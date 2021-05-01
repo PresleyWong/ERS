@@ -1,0 +1,60 @@
+<section class="pt-5 pb-5 pb-0">
+
+    <div class="row justify-content-center header-h100 align-items-center">
+        <div class="col-12 col-md-5">        
+            <div class="card shadow-lg text-start h-100">
+                <h5 class="card-header text-white bg-secondary">Change Email/Password</h5>
+                <div class="card-body">
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+                    <%= render "devise/shared/error_messages", resource: resource %>                      
+
+
+                    <div class="form-group  mt-2">
+                      <label>Email address</label>
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control  mt-2" %>
+                    </div>
+
+                  
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
+                  
+
+                    <div class="form-group  mt-2">
+                      <label>Password <i>(leave blank if you don't want to change it)</i></label>
+                      <%= f.password_field :password, autocomplete: "new-password", class: "form-control  mt-2" %>
+
+                      <% if @minimum_password_length %>
+                      <small class="form-text text-muted"><%= @minimum_password_length %> characters minimum</small>
+                      <% end %>
+                    </div>
+
+                    <div class="form-group  mt-2">
+                      <label>Password Confirmation</label>
+                      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control  mt-2" %>
+
+                      <% if @minimum_password_length %>
+                      <small class="form-text text-muted"><%= @minimum_password_length %> characters minimum</small>
+                      <% end %>
+                    </div>
+
+    
+                    <div class="form-group  mt-2">
+                      <label>Current Password <i>(we need your current password to confirm your changes)</i></label>
+                      <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control  mt-2" %>
+                    </div>
+
+    
+                    <div class="form-group  mt-3">
+                      <%= f.submit "Update", class: "btn btn-primary w-100" %>
+                    </div>
+
+                  <% end %>
+
+                    <%= link_to "Back", :back, class: "btn w-100 mt-3 btn-outline-primary" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

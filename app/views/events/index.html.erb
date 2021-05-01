@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+  <h2>Events</h2>
+</div>
+
+<section class="pt-5 pb-5">
+
+    <div class="row w-100">
+      <div class="col-lg-12 col-md-12 col-12">
+
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th><%= link_to "Title", :sort => "title"%> </th>
+              <th><%= link_to "Date", :sort => "date"%> </th>
+              <th>Registrant</th>
+              <th>MeetingID</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @events.each_with_index do |event, index| %>
+            <tr>
+              <td><%= index+1 %></td>
+              <td><%= link_to event.title, event %></td>
+              <td><%= "#{event.date}" %>  </td>
+              <td><%= event.appointments.count(:user) %></td>
+              <td><%= event.meeting_id1 %></td>
+              <td class="actions">
+
+                <%= link_to edit_event_path(event), class: "btn btn-white border-secondary bg-white btn-sm", title: 'Edit' do %>
+                <i class="fas fa-edit"></i>
+                <% end %>  
+
+                <%= link_to event_path(event), method: :delete, class: "btn btn-white border-secondary bg-white btn-sm", data: { confirm: 'Are you sure?' }, title: 'Delete' do %>
+                <i class="fas fa-trash"></i>
+                <% end %>         
+
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <%= link_to 'New Event', new_event_path %>
+
+ 
+</section>

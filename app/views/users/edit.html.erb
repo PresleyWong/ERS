@@ -1,0 +1,55 @@
+<section class="pt-5 pb-5 pb-0">
+
+        <div class="row justify-content-center header-h100 align-items-center">
+            <div class="col-12 col-md-5">        
+                <div class="card shadow-lg text-start h-100">
+                    <h5 class="card-header text-white bg-secondary">Edit Personal Information</h5>
+                    <div class="card-body">
+                        <%= form_for @user, url: user_path do |f| %>
+                            <label><h6>Gender</h6></label>                             
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <%= f.radio_button :gender, 'Brother', class: "form-check-input" %> 
+                                    <%= f.label :gender, 'Brother', class: "form-check-label", :value => 'Brother' %>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <%= f.radio_button :gender, 'Sister', class: "form-check-input" %> 
+                                    <%= f.label :gender, 'Sister', class: "form-check-label", :value => 'Sister' %>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label><h6>English Name (Full Name Required)</h6></label> 
+                                <%= f.text_field :eng_name, :required => 'required', class: "form-control mt-2" %>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label><h6>Chinese Name</h6></label> 
+                                <%= f.text_field :chn_name, class: "form-control mt-2" %>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label><h6>Phone Number (Do NOT include symbol e.g. + -)</h6></label> 
+                                <%= f.telephone_field :phone_no, class: "form-control mt-2" %>
+                            </div>
+                              
+                            <div class="form-group mt-3">
+                                <label><h6>Locality</h6></label> 
+                                <%= f.text_field :locality, :required => 'required', class: "form-control mt-2" %>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label><h6>Language</h6></label> 
+                                <%= f.select :language, [["English", "English"], ["Chinese", "Chinese"], ["Malay", "Malay"]], {}, {class: "form-control mt-2"} %>
+                            </div>                            
+                            
+                            <%= f.submit "Update", class: "btn w-100 mt-3 btn-primary" %>
+                        <% end %>
+
+                        <%= link_to 'Back', user_path(@user), class: "btn w-100 mt-3 btn-outline-primary" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</section>

@@ -1,0 +1,132 @@
+<!-- <%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %> -->
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+  <h2>Event Details</h2>
+</div>
+
+<section class="pt-5 pb-5">
+
+    <div class="row w-100">
+      <div class="col-lg-12 col-md-12 col-12">
+        <table class="table table-bordered mb-5">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>MeetingID</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> <%= @event.title %> </td>
+              <td> <%= @event.date %> </td>
+              <td> <%= @event.start_time.strftime("%I:%M %p")  %> </td>
+              <td> <%= @event.end_time.strftime("%I:%M %p")  %> </td>
+              <td> <%= @event.meeting_id1%> </td>
+              <td> <%= link_to edit_event_path(@event), class: "btn btn-white border-secondary bg-white btn-sm", title: 'Edit' do %>
+                    <i class="fas fa-edit"></i>
+                    <% end %>   
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+        
+        <%= form_for :query, url: event_path(@event), method: :get do |form| %>
+          <div class="input-group mb-3">
+            <%= form.text_field :search_item, class: 'form-control' , placeholder: 'Enter name', value: params.dig('query', 'text') %>
+ 
+            <%= form.submit 'Search', class: "btn btn-primary" %>
+          </div>
+        <% end  %>
+
+        
+        <% if !@users.empty? %>
+          <table class="table table-success table-striped">
+            <thead>
+              <tr>
+                <th>Gender</th>
+                <th>English Name</th>
+                <th>Chinese Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Language</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @users.each do |user| %>
+              <tr>
+                <td><%= user.gender %>  </td>
+                <td><%= user.eng_name %></td>
+                <td><%= user.chn_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.phone_no %></td>
+
+                <%= form_for :events, url: register_user_path(@event.id, user.id), method: :post do |form| %>
+
+                <td><%= form.select :register_language, [["English", "English"], ["Chinese", "Chinese"], ["Malay", "Malay"]] %></td>
+
+       
+                <td><%= form.submit 'Register', class: "btn btn-primary btn-sm" %></td>
+
+                <% end  %>
+
+
+                <!-- <td><%= user.language %></td> -->
+                <!-- <td> <%= link_to 'Register', register_user_path(@event.id, user.id), method: :post, data: { confirm: 'Are you sure?' } %> </td> -->
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        <% end %>
+
+
+        <h2  class="mt-5">Registrants</h2>
+        <table class="table table-striped mt-1">
+          <thead>
+            <tr>
+              <th>Gender</th>
+              <th>English Name</th>
+              <th>Chinese Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Language</th>
+              <th>Register Date</th>
+              <th>Join Url</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @regis.each do |reg, app| %>
+            <tr>
+              <td><%= reg.gender %>  </td>
+              <td><%= reg.eng_name %></td>
+              <td><%= reg.chn_name %></td>
+              <td><%= reg.email %></td>
+              <td><%= reg.phone_no %></td>
+              <td><%= app.language %></td>
+              <td><%= app.created_at.strftime("%d-%m-%Y %I:%M %p") %></td>
+              <td><%= app.join_url %></td>
+              <td> <%= link_to remove_register_user_path(@event.id, reg.id), class: "btn btn-white border-secondary bg-white btn-sm" do %>
+                <i class="fas fa-trash"></i>
+                <% end %>   
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+    <%= link_to 'Back', events_path %>
+
+</section>

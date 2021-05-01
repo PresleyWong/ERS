@@ -1,0 +1,30 @@
+<%= form_for(:user, class: "form-signin", :url => session_path(:user)) do |f| %>
+  <div class="form-group">
+    <div class="input-group mb-3">
+
+      <span class="input-group-text"> <i class="fa fa-user"></i></span>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter email", class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <span class="input-group-text"> <i class="fa fa-lock"></i></span>
+      <%= f.password_field :password, autocomplete: "current-password", placeholder: "******", class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group form-check mb-3">
+    <%= f.check_box :remember_me , class: "form-check-input" %>
+    <label class="form-check-label">
+      Remember me
+    </label>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.submit "Submit", class: "btn btn-primary w-100" %>
+  </div>
+  <p class="text-center">
+    <%= link_to "Forgot your password?", new_password_path(:user), class: "btn-link" %>
+  </p>
+<% end %>

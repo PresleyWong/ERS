@@ -1,0 +1,49 @@
+<section class="pt-5 pb-5">
+
+      <div class="row justify-content-center header-h100 align-items-center">
+          <div class="col-12 col-md-6">        
+              <div class="card shadow-lg text-start h-100">
+                <div class="card">
+                  <h5 class="card-header text-white bg-secondary">Personal Information</h5>
+                  <div class="card-body">
+                    <p class="card-text">
+                      <strong>English name:</strong>
+                      <%= @user.eng_name %>
+                    </p>
+                    
+                    <p class="card-text">
+                      <strong>Chinese name:</strong>
+                      <%= @user.chn_name %>
+                    </p>
+                    
+                    <p class="card-text">
+                      <strong>Email:</strong>
+                      <%= @user.email %>
+                    </p>
+                    
+                    <p class="card-text">
+                      <strong>Phone Number:</strong>
+                      <%= @user.phone_no %>
+                    </p>
+                    
+                    <p class="card-text">
+                      <strong>Locality:</strong>
+                      <%= @user.locality %>
+                    </p>
+                    
+                    <p class="card-text">
+                      <strong>Language:</strong>
+                      <%= @user.language %>
+                    </p>
+                    
+                    <div class="btn-group mt-3" role="group" aria-label="Basic mixed styles example">
+                      <%= link_to 'Edit Profile', edit_user_path(@user), class: "btn btn-outline-primary" %>
+                      <%= link_to "Change Email/Password", edit_user_registration_path, class: "btn btn-outline-primary" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+</section>

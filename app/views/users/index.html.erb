@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 border-bottom">
+  <h1 class="h2">Users</h1>
+</div>
+
+
+<section class="pt-5 pb-5">
+
+    <div class="row w-100">
+      <div class="col-lg-12 col-md-12 col-12">
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Gender</th>
+              <th>English Name</th>
+              <th>Chinese Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th>Language</th>
+              <th>Signup Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each_with_index do |user, index|  %>
+            <tr>
+              <td><%= index+1 %></td>
+              <td><%= user.gender %>  </td>
+              <td><%= user.eng_name %></td>
+              <td><%= user.chn_name %></td>
+              <td><%= user.email %></td>
+              <td><%= user.phone_no %></td>
+              <td><%= user.language %></td>
+              <td><%= user.created_at %></td>
+              <td class="actions">
+                
+                <%= link_to edit_user_path(user), class: "btn btn-white border-secondary bg-white btn-sm", title: 'Edit' do %>
+                <i class="fas fa-edit"></i>
+                <% end %>  
+
+                <%= link_to user, method: :delete, class: "btn btn-white border-secondary bg-white btn-sm", data: { confirm: 'Are you sure?' }, title: 'Delete' do %>
+                <i class="fas fa-trash"></i>
+                <% end %>        
+
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      <%= link_to 'New Event', new_event_path %>
+    </div>    
+
+</section>
+

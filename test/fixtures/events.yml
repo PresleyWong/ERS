@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  date: 2021-04-11
+  time: 2021-04-11 22:05:44
+  meeting: MyString
+
+two:
+  title: MyString
+  date: 2021-04-11
+  time: 2021-04-11 22:05:44
+  meeting: MyString
