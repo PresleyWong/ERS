@@ -5,6 +5,7 @@
 
 
 import "bootstrap"
+import "@fortawesome/fontawesome-free/js/all"
 import "@fortawesome/fontawesome-free/css/all"
 require("@rails/ujs").start()
 require("turbolinks").start()
